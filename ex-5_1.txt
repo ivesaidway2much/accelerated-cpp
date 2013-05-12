@@ -1,0 +1,11 @@
+-Read in a line of input
+-combine the line with the previous lines
+-mark the start and end positions of of the line
+-Create a rotation for each word in the line
+	-rotations are split into two strings
+		   -from [startpos, rotation_start)
+		   -from [rotation_start, endpos] 
+-Sort the rotations in alphabetical order
+
+
+-print the rotations in well-formatted manner
