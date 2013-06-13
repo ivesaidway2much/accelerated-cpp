@@ -6,6 +6,7 @@
 		   -from [startpos, rotation_start)
 		   -from [rotation_start, endpos] 
 -Sort the rotations in alphabetical order
+-Insert the rotations into a sorted list of previous rotations
 
 
 -print the rotations in well-formatted manner
