@@ -22,7 +22,7 @@ main ()
     full_string = full_string + " " + line_string;
     std::cout<< full_string<<std::endl;
     temp_rotate_vec=new_rotation.create_rotations(line_string);
-    rotation_vector.insert(rotation_vector.end(), temp_rotate_vec.begin(), temp_rotate_vec.end())
+    rotation_vector.insert(rotation_vector.end(), temp_rotate_vec.begin(), temp_rotate_vec.end());
   }
 
   

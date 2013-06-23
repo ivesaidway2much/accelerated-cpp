@@ -1,15 +1,16 @@
 #include "Rotation.h"
 
-using std::istream; 
+using std::iostream; 
 using std::vector;
+using std::endl;
 
-bool compare(const Rotation& foo, const Rotation& bar)
+bool Rotation::compare(const Rotation& foo, const Rotation& bar)
 {//compare two rotations
   return foo.name < bar.name;
 }
 
 
-std::vector<Rotation> create_rotations(const std::string& rot_string)
+std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
 {//return a vector of rotations based on the string
   
   std::vector<Rotation> rotations;
@@ -32,6 +33,6 @@ std::vector<Rotation> create_rotations(const std::string& rot_string)
   
 }
 
-std::string rotation_string()
+std::string Rotation::rotation_string()
 {
 }

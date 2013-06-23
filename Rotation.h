@@ -9,13 +9,11 @@
 struct Rotation {
   std::string name;
   std::size_t endpos, startpos, rotationpos;
+  std::vector<Rotation> create_rotations(const std::string&);
+  bool compare(const Rotation&, const Rotation&);
+  std::string rotation_string();
   //std::vector<int> homework;
 };
 
-bool compare(const Rotation&, const Rotation&);
-
-std::vector<Rotation> create_rotations(const std::string&);
-
-std::string rotation_string();
 #endif
  
