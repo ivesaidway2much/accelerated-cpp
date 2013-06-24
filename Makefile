@@ -1,6 +1,7 @@
 SHELL=/bin/bash
 CXX=g++
 CC=g++
+CXXFLAGS=-g
 
 all:        ex-5_1
 
