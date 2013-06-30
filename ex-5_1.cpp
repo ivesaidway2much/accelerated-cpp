@@ -19,6 +19,8 @@ main ()
     std::cout<< "Please enter in a line of text: "<<std::endl;
     std::getline (std::cin, line_string);
     line_size= line_string.size();
+    new_rotation.first=0;
+    new_rotation.last=line_size;
     full_string = full_string + " " + line_string;
     std::cout<< full_string<<std::endl;
     temp_rotate_vec=new_rotation.create_rotations(line_string);
