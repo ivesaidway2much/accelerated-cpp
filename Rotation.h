@@ -11,9 +11,8 @@ struct Rotation {
   std::size_t endpos, startpos, rotationpos;
   std::vector<Rotation> create_rotations(const std::string&);
   bool compare(const Rotation&, const Rotation&);
-  std::string rotation_string();
+  std::string rotation_string(const Rotation&);
   //std::vector<int> homework;
 };
 
 #endif
- 
