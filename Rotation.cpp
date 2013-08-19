@@ -32,6 +32,12 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     rotations.push_back(temp_rotation);
     found=rot_string.find_first_of(" ", found+1);
   }
+  if (str_sz != 0)
+  {//add the final i.e the full string
+    temp_rotation.rotationpos=temp_rotation.endpos;
+    rotations.push_back(temp_rotation);
+    std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
+  }
   return rotations;    
   
 }
