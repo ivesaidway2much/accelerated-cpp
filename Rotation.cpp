@@ -6,9 +6,26 @@ using std::vector;
 
 bool Rotation::compare(const Rotation& foo, const Rotation& bar)
 {//compare two rotations
-  return foo.name < bar.name;
+  return foo.rotation_word() < bar.rotation_word();
 }
 
+std::string Rotation::rotation_word(/*const Rotation& foo*/) const
+{//returns the word that the line is being rotated around
+  std::string ret_string="";
+  std::string rot_string=this->name;
+  std::size_t nxt_spc=rot_string.find_first_of(" ", this->rotationpos+1);
+  std::cout<< "Next Space is "<<nxt_spc<< "  Rotation pos is "<< this->rotationpos<< std::endl;
+  if (nxt_spc > rot_string.size())
+    {//checking if this is the end of one line
+    ret_string=rot_string.substr(this->rotationpos, this->name.size() - this->rotationpos);
+    std::cout<<"return1 "<<ret_string<<std::endl;
+  }else
+  {
+    ret_string=rot_string.substr(this->rotationpos, nxt_spc - this->rotationpos);
+    std::cout<<"return2 "<<ret_string<<std::endl;
+  }
+  return ret_string;
+}
 
 std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
 {//return a vector of rotations based on the string
@@ -20,8 +37,10 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
   temp_rotation.startpos=0;
   temp_rotation.endpos=str_sz;
   temp_rotation.name=rot_string;
+  std::string rot_word="";
 
-  //  for (std::size_t found=0; found < str_sz; found=rot_string.find_first_of(" ", found+1))
+
+
   while (found < str_sz)
   {// create a rotation for each word in the string, and then add that rotation to the rotations vector.
     //loop invariant all spaces prior to the string position = size_t found have been located
@@ -29,6 +48,8 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     //std::cout<< rot_string.substr(found, str_sz - found)<<" "<<found<<std::endl;    
     temp_rotation.rotationpos=found;
     std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
+    rot_word=temp_rotation.rotation_word();
+    std::cout<<"Here is the rotation word: "<<rot_word<<std::endl;
     rotations.push_back(temp_rotation);
     found=rot_string.find_first_of(" ", found+1);
   }
@@ -37,6 +58,7 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     temp_rotation.rotationpos=temp_rotation.endpos;
     rotations.push_back(temp_rotation);
     std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
+    
   }
   return rotations;    
   
@@ -45,6 +67,7 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
 std::string Rotation::rotation_string(const Rotation& foo)
 {//print out the rotation
   std::cout<<foo.name.size()<<" and "<<foo.rotationpos<<std::endl;
+
   std::string return_string = foo.name.substr(0, foo.rotationpos) + "\t" + foo.name.substr(foo.rotationpos, foo.name.size() - foo.rotationpos);
   return return_string;
 }
