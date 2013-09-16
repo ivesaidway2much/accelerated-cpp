@@ -60,11 +60,16 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
     
   }
+  std::sort(rotations.begin(), rotations.end(), compare);
+  for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
+  {
+    std::cout<<"Sort: " << (*citer).rotation_string(*citer) << std::endl;
+  }
   return rotations;    
   
 }
 
-std::string Rotation::rotation_string(const Rotation& foo)
+std::string Rotation::rotation_string(const Rotation& foo) const
 {//print out the rotation
   std::cout<<foo.name.size()<<" and "<<foo.rotationpos<<std::endl;
 
