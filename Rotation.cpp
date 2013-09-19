@@ -4,7 +4,7 @@ using std::iostream;
 using std::vector;
 //using std::endl;
 
-bool Rotation::compare(const Rotation& foo, const Rotation& bar)
+bool Rotation::rot_compare(const Rotation& foo, const Rotation& bar)
 {//compare two rotations
   return foo.rotation_word() < bar.rotation_word();
 }
@@ -60,10 +60,10 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
     
   }
-  std::sort(rotations.begin(), rotations.end(), compare);
+  std::sort(rotations.begin(), rotations.end(), rot_compare);
   for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
   {
-    std::cout<<"Sort: " << (*citer).rotation_string(*citer) << std::endl;
+    std::cout<<"Sort: " << (*citer).rotation_word(/**citer*/) << std::endl;
   }
   return rotations;    
   
