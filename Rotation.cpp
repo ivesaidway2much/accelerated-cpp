@@ -35,11 +35,11 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
   std::size_t str_sz=rot_string.size();
   std::size_t found=rot_string.find_first_of(" ");
   temp_rotation.startpos=0;
+  temp_rotation.rotationpos=0;
   temp_rotation.endpos=str_sz;
+  //rotations.push_back(temp_rotation);
   temp_rotation.name=rot_string;
   std::string rot_word="";
-
-
 
   while (found < str_sz)
   {// create a rotation for each word in the string, and then add that rotation to the rotations vector.
@@ -47,9 +47,9 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     
     //std::cout<< rot_string.substr(found, str_sz - found)<<" "<<found<<std::endl;    
     temp_rotation.rotationpos=found;
-    std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
+    //std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
     rot_word=temp_rotation.rotation_word();
-    std::cout<<"Here is the rotation word: "<<rot_word<<std::endl;
+    //std::cout<<"Here is the rotation word: "<<rot_word<<std::endl;
     rotations.push_back(temp_rotation);
     found=rot_string.find_first_of(" ", found+1);
   }
@@ -57,8 +57,12 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
   {//add the final i.e the full string
     temp_rotation.rotationpos=temp_rotation.endpos;
     rotations.push_back(temp_rotation);
-    std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
+    //std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
     
+  }
+  for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
+  {
+     std::cout<<"String: " << (*citer).rotation_string(*citer) << std::endl;
   }
   std::sort(rotations.begin(), rotations.end(), rot_compare);
   for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
@@ -71,7 +75,7 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
 
 std::string Rotation::rotation_string(const Rotation& foo) const
 {//print out the rotation
-  std::cout<<foo.name.size()<<" and "<<foo.rotationpos<<std::endl;
+  //std::cout<<foo.name.size()<<" and "<<foo.rotationpos<<std::endl;
 
   std::string return_string = foo.name.substr(0, foo.rotationpos) + "\t" + foo.name.substr(foo.rotationpos, foo.name.size() - foo.rotationpos);
   return return_string;
