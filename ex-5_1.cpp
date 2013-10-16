@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "Rotation.h"
 
 main ()
@@ -26,6 +27,10 @@ main ()
     rotation_vector.insert(rotation_vector.end(), temp_rotate_vec.begin(), temp_rotate_vec.end());
   }
 
-  
+  std::sort(rotation_vector.begin(), rotation_vector.end(), new_rotation.rot_compare);
+  for (std::vector<Rotation>::const_iterator citer = rotation_vector.begin(); citer != rotation_vector.end(); ++citer)
+  {
+    std::cout<<"Sort_fin: " << (*citer).rotation_string(*citer) << " Rotaion position: "<< (*citer).rotationpos<< std::endl;
+  }  
   
 } 

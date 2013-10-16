@@ -16,13 +16,16 @@ std::string Rotation::rotation_word(/*const Rotation& foo*/) const
   std::size_t nxt_spc=rot_string.find_first_of(" ", this->rotationpos+1);
   //std::cout<< "Next Space is "<<nxt_spc<< "  Rotation pos is "<< this->rotationpos<< std::endl;
   if (nxt_spc > rot_string.size())
-    {//checking if this is the end of one line
+  {//checking if this is the end of one line
     ret_string=rot_string.substr(this->rotationpos, this->name.size() - this->rotationpos);
     //std::cout<<"return1 "<<ret_string<<std::endl;
-  }else
+  }if (this->rotationpos == 0)
   {
     ret_string=rot_string.substr(this->rotationpos, nxt_spc - this->rotationpos);
     //std::cout<<"return2 "<<ret_string<<std::endl;
+  }else
+  {//make sure to take out the leading space in the rotation word
+    ret_string=rot_string.substr(this->rotationpos+1, nxt_spc - this->rotationpos);
   }
   return ret_string;
 }
@@ -55,13 +58,13 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
     
     found=rot_string.find_first_of(" ", found+1);
   }
-  if (str_sz != 0)
+  /*if (str_sz != 0)
   {//add the final i.e the full string
     temp_rotation.rotationpos=temp_rotation.endpos;
     rotations.push_back(temp_rotation);
     //std::cout<<temp_rotation.rotation_string(temp_rotation)<<std::endl;
     
-  }
+  }*/
   for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
   {
     std::cout<<"String: " << (*citer).rotation_word(/**citer*/) << " Rotaion position: "<< (*citer).rotationpos<< std::endl;
@@ -69,7 +72,7 @@ std::vector<Rotation> Rotation::create_rotations(const std::string& rot_string)
   std::sort(rotations.begin(), rotations.end(), rot_compare);
   for (vector<Rotation>::const_iterator citer = rotations.begin(); citer != rotations.end(); ++citer)
   {
-    std::cout<<"Sort: " << (*citer).rotation_word(/**citer*/) << " Rotaion position: "<< (*citer).rotationpos<< std::endl;
+    std::cout<<"Sort: " << (*citer).rotation_string(*citer) << " Rotaion position: "<< (*citer).rotationpos<< std::endl;
   }
   return rotations;    
   
